@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Conectividad Avanzada — IoT y Experiencias Inmersivas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#00d1ff;--muted:#9fb0c9}
+    body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#081020,#0b1625,#101b2e);color:#e6eef8;text-align:center}
+    header{background:rgba(255,255,255,0.03);padding:14px 0;position:sticky;top:0;backdrop-filter:blur(8px);z-index:10}
+    nav a{color:#a7b3c6;text-decoration:none;margin:0 12px;font-weight:600;transition:color .2s}
+    nav a:hover{color:var(--accent)}
+    h1{font-size:38px;margin:30px 0 8px 0;color:var(--accent)}
+    section{padding:36px 20px;max-width:1100px;margin:auto;text-align:left}
+    h2{color:var(--accent);border-bottom:2px solid rgba(255,255,255,0.06);padding-bottom:6px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .card{background:rgba(255,255,255,0.03);padding:16px;border-radius:10px}
+    footer{padding:20px;background:rgba(255,255,255,0.03);color:#8fa1bb;text-align:center}
+
+    /* 3D network wheel animation */
+    .anim-section{display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap}
+    .wheel-wrap{width:420px;height:420px;display:flex;align-items:center;justify-content:center}
+    .scene{width:360px;height:360px;perspective:900px}
+    .ring{width:100%;height:100%;position:relative;transform-style:preserve-3d;animation:spin 14s linear infinite}
+    .ring:hover{animation-play-state:paused}
+    .node{position:absolute;left:50%;top:50%;width:28px;height:28px;margin:-14px;border-radius:50%;background:linear-gradient(180deg,var(--accent),#5b8bff);box-shadow:0 6px 20px rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;color:#021;font-weight:700;transform-origin:0 0}
+    .node::after{content:'';position:absolute;width:2px;height:90px;left:50%;top:50%;transform-origin:top center;background:linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.02));opacity:0.9}
+    .node .label{position:absolute;top:36px;left:50%;transform:translateX(-50%);font-size:12px;color:var(--muted);width:120px;text-align:center}
+    @keyframes spin{0%{transform:rotateX(20deg) rotateY(0deg)}100%{transform:rotateX(20deg) rotateY(360deg)}}
+    .ring .node{--i:0}
+    .ring .node:nth-child(1){--i:0}
+    .ring .node:nth-child(2){--i:22.5deg}
+    .ring .node:nth-child(3){--i:45deg}
+    .ring .node:nth-child(4){--i:67.5deg}
+    .ring .node:nth-child(5){--i:90deg}
+    .ring .node:nth-child(6){--i:112.5deg}
+    .ring .node:nth-child(7){--i:135deg}
+    .ring .node:nth-child(8){--i:157.5deg}
+    .ring .node:nth-child(9){--i:180deg}
+    .ring .node:nth-child(10){--i:202.5deg}
+    .ring .node:nth-child(11){--i:225deg}
+    .ring .node:nth-child(12){--i:247.5deg}
+    .ring .node:nth-child(13){--i:270deg}
+    .ring .node:nth-child(14){--i:292.5deg}
+    .ring .node:nth-child(15){--i:315deg}
+    .ring .node:nth-child(16){--i:337.5deg}
+    .ring .node{transform: rotateY(var(--i)) translateZ(160px) rotateY(calc(-1 * var(--i)))}
+    .hub{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px;border-radius:50%;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(0,0,0,0.6);backdrop-filter:blur(6px)}
+    .hub .title{font-size:14px;color:var(--muted)}
+    @keyframes pulse {0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+    .node span{display:block;width:100%;height:100%;border-radius:50%;animation:pulse 3.2s ease-in-out infinite}
+    @media(max-width:600px){.wheel-wrap{width:300px;height:300px}.scene{width:260px;height:260px}.ring .node{transform: rotateY(var(--i)) translateZ(120px) rotateY(calc(-1 * var(--i)))}.hub{width:90px;height:90px;margin:-45px}}
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#historia">Historia</a>
+      <a href="#pioneros">Pioneros</a>
+      <a href="#tecnicas">Técnicas</a>
+      <a href="#guias">Guías</a>
+      <a href="#galeria">Galería</a>
+      <a href="#videos">Videos</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contactos">Contactos</a>
+      <a href="#animacion">Animación</a>
+      <a href="#referencias">Referencias</a>
+    </nav>
+  </header>
+
+  <section id="inicio">
+    <h1>Conectividad Avanzada, IoT y Experiencias Inmersivas</h1>
+    <p style="margin-top:12px">Esta página es un compendio educativo sobre cómo la conectividad avanzada está transformando sociedades y economías. Encontrarás contexto histórico, perfiles de pioneros, técnicas y patrones arquitectónicos, guías prácticas para iniciar proyectos, ejemplos reales y una sección multimedia con videos y galerías.</p>
+    <div class="card" style="margin-top:18px">Objetivo: ofrecer un recurso accesible y técnico a la vez, útil para estudiantes, docentes, desarrolladores y gestores de proyectos interesados en IoT y experiencias inmersivas.</div>
+  </section>
+
+  <section id="historia">
+    <h2>Historia (ampliada)</h2>
+    <p>La trayectoria de la conectividad se puede dividir en fases: la era de las redes experimentales (1960-1980) con ARPANET, la expansión de protocolos y redes (1980-2000) con TCP/IP y el acceso masivo a Internet, y la fase reciente (2000-presente) donde la miniaturización de sensores y la caída de los costes han permitido conectar objetos físicos a escala. En 1999, investigadores de la industria y la academia comenzaron a usar y popularizar la expresión "Internet de las Cosas" para describir un futuro con dispositivos capaces de comunicarse y colaborar sin intervención humana constante.</p>
+    <p>En la última década, tecnologías como el 4G/5G, la virtualización, el IoT industrial (IIoT) y el Edge Computing cambiaron el enfoque: de meros sensores recolectores de datos a sistemas distribuidos que procesan información en el borde, optimizando tiempos de respuesta y privacidad. El impacto histórico no es solo tecnológico: también reconfigura modelos de negocio, regulación y ética en el uso de datos.</p>
+  </section>
+
+  <section id="pioneros">
+    <h2>Pioneros (ampliada)</h2>
+    <div class="grid">
+      <div class="card"><strong>Kevin Ashton</strong><p class="muted">En 1999 propuso vincular el mundo físico con sistemas informáticos usando sensores y etiquetas RFID, articulando la idea que hoy llamamos IoT. Sus escritos y conferencias ayudaron a definir prioridades en logística y trazabilidad.</p></div>
+      <div class="card"><strong>Tim Berners‑Lee</strong><p class="muted">Su invención de la World Wide Web hizo posible el acceso y la interoperabilidad de información, fundamento del ecosistema conectado moderno.</p></div>
+      <div class="card"><strong>Mark Weiser</strong><p class="muted">Defensor de la "computación ubicua" que imaginó dispositivos integrados de forma natural en el entorno humano, inspirando diseños invisibles y centrados en la experiencia.</p></div>
+      <div class="card"><strong>Jaron Lanier</strong><p class="muted">Pionero en realidad virtual cuyo trabajo inicial con hardware y experiencias ayudó a definir cómo se diseñan entornos inmersivos hoy.</p></div>
+      <div class="card"><strong>Organizaciones</strong><p class="muted">Instituciones como IEEE han sido claves para crear foros técnicos, publicar investigaciones y promover estándares que sostienen la interoperabilidad de IoT.</p></div>
+    </div>
+  </section>
+
+  <section id="tecnicas">
+    <h2>Técnicas y patrones arquitectónicos (ampliada)</h2>
+    <p>Una solución IoT robusta suele seguir varias capas: dispositivos/sensores, redes de acceso (Wi‑Fi, BLE, LoRaWAN, NB‑IoT, 4G/5G), gateways/edge nodes, plataformas en la nube y aplicaciones finales. Cada capa tiene requisitos distintos de seguridad, latencia y escalabilidad.</p>
+    <p>Patrones comunes: uso de MQTT o AMQP para telemetría ligera, HTTP/REST para APIs, edge analytics para preprocesamiento, y pipelines de datos con Kafka o servicios gestionados. En el diseño hardware, seleccionar sensores con la precisión adecuada y considerar energía (batería, energía recolectada) es crítico.</p>
+    <p>Técnicas emergentes: <em>federated learning</em> para entrenar modelos sin mover todos los datos a la nube, <em>digital twins</em> para simular activos físicos, y seguridad por diseño (firmware firmado, TPM/secure elements, actualizaciones OTA seguras).</p>
+  </section>
+
+  <section id="guias">
+    <h2>Guías prácticas (ampliada)</h2>
+    <p>Iniciar un proyecto IoT típico:</p>
+    <ol>
+      <li>Definir el caso de uso y métricas de éxito (KPIs): eficiencia, ahorro, seguridad o experiencia del usuario.</li>
+      <li>Seleccionar dispositivos: microcontroladores (ESP32, STM32), sensores certificados y módulos de comunicación.</li>
+      <li>Arquitectura de conectividad: elegir entre LPWAN (LoRa/NB‑IoT) para largo alcance y baja energía, o 5G/Wi‑Fi para alta tasa de datos y baja latencia.</li>
+      <li>Plataforma de datos: elegir entre soluciones open‑source (ThingsBoard, Node‑RED) o nubes comerciales (AWS IoT, Azure IoT, Google Cloud IoT).</li>
+      <li>Seguridad y privacidad: cifrado en tránsito (TLS), autenticación de dispositivos (certificados), gestión de identidades y gobernanza de datos.</li>
+      <li>Pruebas y despliegue: prototipado rápido, pruebas en terreno y despliegue gradual con monitoreo y capacidad de rollback.</li>
+    </ol>
+    <p>Recursos de aprendizaje: cursos en plataformas universitarias, webinars de IEEE IoT y documentación oficial de fabricantes para asegurar una implementación segura y escalable.</p>
+  </section>
+
+  <section id="galeria">
+    <h2>Galería (contexto ampliado)</h2>
+    <div class="grid">
+      <div class="card"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600" width="100%" alt="Sensores IoT"><p class="muted">Ejemplo: sensores ambientales desplegados en una escuela para monitoreo de calidad de aire, ayudando a reducir ausentismo.</p></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600" width="100%" alt="Realidad virtual"><p class="muted">Aplicación: formación médica con simulaciones VR que reemplazan prácticas invasivas durante la etapa inicial de aprendizaje.</p></div>
+      <div class="card"><img src="data:image/webp;base64,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" width="100%" alt="Robótica"><p class="muted">Robots conectados optimizan logísticas internas en bodegas usando visión artificial y sensores.</p></div>
+    </div>
+  </section>
+
+  <section id="videos">
+    <h2>Videos y material multimedia (ampliado)</h2>
+    <p>Selección de contenido para profundizar: introducciones conceptuales, tutoriales prácticos y charlas académicas. Ver los videos añadidos en la sección multimedia para completar la teoría con ejemplos reales.</p>
+    <div class="grid">
+      <div class="card"><iframe width="560" height="315" src="https://www.youtube.com/embed/-7DiO35rbN8?si=qv-8s1hk_hEsT95M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	  
+      <div class="card"><iframe width="560" height="315" src="https://www.youtube.com/embed/Fn3311WBG-o?si=eyKdtUicMAUmMgWX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <h2>Proyectos (ampliado)</h2>
+    <p>Ideas de proyectos con detalles ampliados:</p>
+    <div class="grid">
+      <div class="card"><strong>Smart Home Avanzado:</strong><p class="muted">Integración de sensores de ocupación, control climático predictivo y rutinas de ahorro energético. Usa Edge Computing para decisiones locales y la nube para análisis a largo plazo.</p></div>
+      <div class="card"><strong>Monitoreo Ambiental Urbano:</strong><p class="muted">Red de sensores para calidad del aire y ruido; datos públicos que alimentan dashboards ciudadanos y políticas públicas.</p></div>
+      <div class="card"><strong>Fábrica Conectada (IIoT):</strong><p class="muted">Mantenimiento predictivo con sensores de vibración y temperatura; digital twin para simular cambios en la línea de producción.</p></div>
+      <div class="card"><strong>Plataforma Educativa Inmersiva:</strong><p class="muted">Aulas mixtas que combinan RA para contenido curricular y VR para prácticas simuladas con seguimiento de desempeño.</p></div>
+    </div>
+  </section>
+
+  <section id="contactos">
+    <h2>Contactos y redes profesionales (ampliado)</h2>
+    <p>Organizaciones y recursos donde encontrar documentación, estándares y comunidades activas:</p>
+    <ul>
+      <li>IEEE IoT Technical Community — webinars, publicaciones y comunidad técnica.</li>
+      <li>MIT Media Lab — investigaciones aplicadas y prototipos de sensores avanzados.</li>
+      <li>Gartner — análisis de mercado y recomendaciones estratégicas para líderes TI.</li>
+      <li>Naciones Unidas y agencias relacionadas — informes sobre transformación digital y desarrollo sostenible.</li>
+    </ul>
+    <p>Correo de contacto sugerido para colaboración: <a href="mailto:info@conectividadavanzada.org">info@conectividadavanzada.org</a></p>
+  </section>
+
+  <section id="animacion">
+    <h2>Animación: Rueda de Red 3D</h2>
+    <p class="muted">Interactúa: pasa el cursor sobre la rueda para detener la rotación y explorar los nodos; la animación representa las relaciones entre componentes IoT.</p>
+    <div class="anim-section">
+      <div class="wheel-wrap">
+        <div class="scene">
+          <div class="ring" aria-hidden="false">
+            <div class="node"><span></span><div class="label">Sensor</div></div>
+            <div class="node"><span></span><div class="label">Gateway</div></div>
+            <div class="node"><span></span><div class="label">Edge</div></div>
+            <div class="node"><span></span><div class="label">Nube</div></div>
+            <div class="node"><span></span><div class="label">App</div></div>
+            <div class="node"><span></span><div class="label">Actuador</div></div>
+            <div class="node"><span></span><div class="label">Mantenimiento</div></div>
+            <div class="node"><span></span><div class="label">Analytics</div></div>
+            <div class="node"><span></span><div class="label">Seguridad</div></div>
+            <div class="node"><span></span><div class="label">Red 5G</div></div>
+            <div class="node"><span></span><div class="label">LoRa</div></div>
+            <div class="node"><span></span><div class="label">Bluetooth</div></div>
+            <div class="node"><span></span><div class="label">Integración</div></div>
+            <div class="node"><span></span><div class="label">UI</div></div>
+            <div class="node"><span></span><div class="label">VR/AR</div></div>
+            <div class="node"><span></span><div class="label">DevOps</div></div>
+            <div class="hub"><div class="title">Ecosistema IoT</div></div>
+          </div>
+        </div>
+      </div>
+      <div style="max-width:460px;text-align:left">
+        <div class="card"><strong>Descripción:</strong> Esta animación representa una rueda 3D de nodos que giran alrededor de un hub central. Cada nodo simboliza una pieza del ecosistema IoT (sensores, redes, nube, apps y seguridad).</div>
+        <div class="card"><strong>Interacción:</strong> Coloca el cursor sobre la rueda para pausar la rotación y explorar un nodo visualmente.</div>
+      </div>
+    </div>
+  </section>
+  </section>
+  <section id="recursos">
+    <h2>Recursos y Enlaces Externos</h2><section id="referencias">
+    <div class="resources">  <h2>Referencias y lecturas recomendadas</h2>
+      <div class="card">  <p class="muted">A continuación se listan organizaciones y publicaciones recomendadas para profundizar en IoT y conectividad avanzada.</p>
+        <img src="data:image/webp;base64,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" alt="IEEE">  <ul>
+        <h3>IEEE IoT Community</h3>    <li>IEEE IoT Technical Community — recursos, webinars y publicaciones técnicas.</li>
+        <p>Descubre estándares, artículos y proyectos sobre el Internet de las Cosas promovidos por IEEE.</p>    <li>MIT — noticias y proyectos de investigación relacionados con sensores y conectividad.</li>
+        <a href="https://iot.ieee.org/" target="_blank">Visitar</a>    <li>Gartner — informes y análisis de mercado sobre IoT y tendencias tecnológicas.</li>
+      </div>    <li>Naciones Unidas — informes sobre transformación digital y desarrollo sostenible.</li>
+      <div class="card">  </ul>
+        <img src="https://th.bing.com/th/id/OIP.xaMkggk9XhnUV2EEFisBYQHaEu?w=221&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="MIT"></section>
+        <h3>MIT Technology Review</h3>
+        <p>Artículos e investigaciones sobre tendencias tecnológicas e impacto del IoT en la sociedad moderna.</p><footer>
+        <a href="https://th.bing.com/th/id/OIP.FCNjegDynbl-Z_p9QY9whAHaE8?w=256&h=180&c=7&r=0&o=7&pid=1.7&rm=3" target="_blank">Visitar</a>  © 2025 Conectividad Avanzada · Página educativa creada con HTML, CSS y animaciones.
+      </div></footer>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.Vzg5MFo40OJdZi7q2U4lFwHaE8?w=256&h=180&c=7&r=0&o=7&pid=1.7&rm=3"><script>
+       </h3>  // Minimal script: lazy load images and pause spin on hover handled by CSS
+        <p>Iniciativas internacionales para el desarrollo sostenible a través de tecnologías conectadas.</p>  document.querySelectorAll('img').forEach(img=>img.loading='lazy');
+        <a href="https://th.bing.com/th/id/OIP.3PMksgoCbUOXMtG5_2kQQQHaE8?w=275&h=183&c=7&r=0&o=7&pid=1.7&rm=3" target="_blank">Visitar</a></script>
+   <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.3WIk0o7MKL6iPQ00T0v4-wHaEK?w=277&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Cisco">
+        <h3>Cisco IoT Solutions</h3>
+        <p>Soluciones empresariales de red, seguridad y automatización basadas en Internet de las Cosas.</p>
+        <a href="https://th.bing.com/th/id/OIP.FCNjegDynbl-Z_p9QY9whAHaE8?w=256&h=180&c=7&r=0&o=7&pid=1.7&rm=3" target="_blank">Visitar</a>
+      </div>
+      <div class="card">
+        <img src="https://th.bing.com/th/id/OIP.Id0ixZsBybJK8VyYwzrbGAHaEo?w=308&h=192&c=7&r=0&o=7&pid=1.7&rm=3" alt="Gartner">
+        <h3>Gartner IoT Insights</h3>
+        <p>Análisis y proyecciones globales sobre la adopción y evolución del IoT.</p>
+        <a href="https://www.gartner.com/en/information-technology/insights/internet-of-things" target="_blank">Visitar</a>
+      </div>
+    </div>
+  </section>
